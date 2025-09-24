@@ -1,0 +1,443 @@
+/* 通知系統主容器 */
+.comment-notifications {
+  position: relative;
+  display: inline-block;
+}
+
+/* 通知觸發按鈕 */
+.notification-trigger {
+  position: relative;
+  padding: 8px;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-trigger:hover {
+  background: #f3f4f6;
+}
+
+.notification-trigger .notification-icon {
+  font-size: 20px;
+  color: #6b7280;
+}
+
+/* 通知徽章 */
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  background: #ef4444;
+  color: white;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 通知面板遮罩 */
+.notification-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 999;
+}
+
+/* 通知面板 */
+.notification-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 380px;
+  max-height: 500px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+/* 通知標題 */
+.notification-header {
+  padding: 16px;
+  border-bottom: 1px solid #f3f4f6;
+  background: #fafafa;
+}
+
+.notification-header h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.notification-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 篩選標籤 */
+.filter-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.filter-tabs button {
+  padding: 4px 8px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-tabs button:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.filter-tabs button.active {
+  background: #3b82f6;
+  color: white;
+}
+
+/* 全部標為已讀按鈕 */
+.mark-all-read {
+  padding: 4px 8px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #3b82f6;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mark-all-read:hover {
+  background: #dbeafe;
+}
+
+/* 通知內容區域 */
+.notification-content {
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+/* 通知分組 */
+.notification-group {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.notification-group:last-child {
+  border-bottom: none;
+}
+
+.group-header {
+  padding: 8px 16px;
+  background: #f9fafb;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.group-notifications {
+  /* 通知項目容器 */
+}
+
+/* 通知項目 */
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid #f9fafb;
+  position: relative;
+}
+
+.notification-item:hover {
+  background: #f8fafc;
+}
+
+.notification-item.unread {
+  background: #f0f9ff;
+  border-left: 3px solid #3b82f6;
+}
+
+.notification-item.unread:hover {
+  background: #e0f2fe;
+}
+
+.notification-item .notification-icon {
+  font-size: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-message {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #374151;
+  margin-bottom: 4px;
+  word-wrap: break-word;
+}
+
+.notification-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.notification-time {
+  /* 時間樣式 */
+}
+
+.notification-from {
+  /* 來源用戶樣式 */
+}
+
+/* 未讀指示器 */
+.unread-indicator {
+  width: 8px;
+  height: 8px;
+  background: #3b82f6;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* 空狀態 */
+.empty-notifications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* 通知底部 */
+.notification-footer {
+  padding: 12px 16px;
+  border-top: 1px solid #f3f4f6;
+  background: #fafafa;
+  text-align: center;
+}
+
+.view-all-btn {
+  padding: 6px 12px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #3b82f6;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-all-btn:hover {
+  background: #dbeafe;
+}
+
+/* 通知列表組件 */
+.notification-list {
+  /* 簡化版通知列表樣式 */
+}
+
+.notification-list .empty-notifications {
+  padding: 20px;
+  font-size: 14px;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* 響應式設計 */
+@media (max-width: 480px) {
+  .notification-panel {
+    width: 320px;
+    max-width: calc(100vw - 32px);
+    right: -16px;
+  }
+  
+  .notification-header {
+    padding: 12px;
+  }
+  
+  .notification-item {
+    padding: 10px 12px;
+  }
+  
+  .notification-controls {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  
+  .filter-tabs {
+    justify-content: center;
+  }
+}
+
+/* 深色模式支援 */
+@media (prefers-color-scheme: dark) {
+  .notification-panel {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  
+  .notification-header {
+    background: #374151;
+    border-color: #4b5563;
+  }
+  
+  .notification-header h3 {
+    color: #f9fafb;
+  }
+  
+  .group-header {
+    background: #374151;
+    color: #9ca3af;
+  }
+  
+  .notification-item {
+    border-color: #374151;
+  }
+  
+  .notification-item:hover {
+    background: #374151;
+  }
+  
+  .notification-item.unread {
+    background: #1e3a8a;
+  }
+  
+  .notification-item.unread:hover {
+    background: #1e40af;
+  }
+  
+  .notification-message {
+    color: #e5e7eb;
+  }
+  
+  .notification-meta {
+    color: #9ca3af;
+  }
+  
+  .notification-footer {
+    background: #374151;
+    border-color: #4b5563;
+  }
+  
+  .filter-tabs button {
+    color: #9ca3af;
+  }
+  
+  .filter-tabs button:hover {
+    background: #4b5563;
+    color: #e5e7eb;
+  }
+  
+  .mark-all-read {
+    color: #60a5fa;
+  }
+  
+  .mark-all-read:hover {
+    background: #1e3a8a;
+  }
+  
+  .view-all-btn {
+    color: #60a5fa;
+  }
+  
+  .view-all-btn:hover {
+    background: #1e3a8a;
+  }
+}
+
+/* 動畫效果 */
+.notification-panel {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notification-item {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 滾動條樣式 */
+.notification-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notification-content::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.notification-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.notification-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

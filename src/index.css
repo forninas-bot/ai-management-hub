@@ -1,0 +1,574 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 梵高藝術風格統一設計系統 */
+@layer base {
+  :root {
+    /* 梵高色彩系統 - 基於《星夜》和《向日葵》 */
+    --van-gogh-night-blue: 30 58 138; /* #1e3a8a */
+    --van-gogh-deep-blue: 30 64 175; /* #1e40af */
+    --van-gogh-sky-blue: 59 130 246; /* #3b82f6 */
+    --van-gogh-yellow: 251 191 36; /* #fbbf24 */
+    --van-gogh-gold: 245 158 11; /* #f59e0b */
+    --van-gogh-orange: 249 115 22; /* #f97316 */
+    --van-gogh-warm-orange: 234 88 12; /* #ea580c */
+    --van-gogh-green: 22 163 74; /* #16a34a */
+    --van-gogh-olive: 101 163 13; /* #65a30d */
+    --van-gogh-purple: 168 85 247; /* #a855f7 */
+    --van-gogh-violet: 139 92 246; /* #8b5cf6 */
+    
+    /* 統一背景系統 */
+    --bg-primary: 248 250 252; /* neural-50 */
+    --bg-secondary: 241 245 249; /* neural-100 */
+    --bg-card: 255 255 255;
+    --bg-glass: 255 255 255;
+    --bg-neural: 248 250 252;
+    
+    /* 統一文字系統 */
+    --text-primary: 15 23 42; /* neural-900 */
+    --text-secondary: 71 85 105; /* neural-600 */
+    --text-tertiary: 100 116 139; /* neural-500 */
+    --text-accent: 30 58 138; /* van-gogh-night-blue */
+    
+    /* 統一邊框系統 */
+    --border-color: 226 232 240; /* neural-200 */
+    --border-secondary: 203 213 225; /* neural-300 */
+    --border-accent: 59 130 246; /* van-gogh-sky-blue */
+    
+    /* 統一陰影系統 */
+    --shadow-color: 0 0 0;
+    --shadow-opacity: 0.1;
+    --shadow-glow: 59 130 246;
+    
+    /* AI科技色彩 - 保持兼容性 */
+    --ai-cyan: 0 212 255;
+    --ai-purple: 139 92 246;
+    --ai-glow: 14 165 233;
+    
+    /* Primary 顏色 */
+    --primary: 59 130 246; /* van-gogh-sky-blue */
+  }
+  
+  .dark {
+    /* 深色模式 - 梵高夜晚風格 */
+    --bg-primary: 15 23 42; /* neural-900 */
+    --bg-secondary: 30 41 59; /* neural-800 */
+    --bg-card: 51 65 85; /* neural-700 */
+    --bg-glass: 0 0 0;
+    --bg-neural: 15 23 42;
+    
+    --text-primary: 248 250 252; /* 高對比度白色 */
+    --text-secondary: 203 213 225; /* neural-300 */
+    --text-tertiary: 148 163 184; /* neural-400 */
+    --text-accent: 96 165 250; /* 調亮的藍色 */
+    
+    --border-color: 51 65 85; /* neural-700 */
+    --border-secondary: 71 85 105; /* neural-600 */
+    --border-accent: 139 92 246; /* van-gogh-purple */
+    
+    --shadow-color: 0 0 0;
+    --shadow-opacity: 0.5;
+    --shadow-glow: 139 92 246;
+    
+    /* 深色模式下的AI色彩調整 */
+    --ai-cyan: 34 211 238; /* 稍微調亮 */
+    --ai-purple: 168 85 247; /* 稍微調亮 */
+    --ai-glow: 56 189 248; /* 調整發光效果 */
+    
+    /* 深色模式下的 Primary 顏色 */
+    --primary: 96 165 250; /* 調亮的藍色 */
+  }
+  
+  /* 護眼模式 - 梵高暖色調 */
+  .eye-care {
+    filter: sepia(15%) saturate(90%) brightness(92%) hue-rotate(5deg);
+    --van-gogh-night-blue: 37 99 235; /* 調亮 */
+    --van-gogh-sky-blue: 96 165 250; /* 調亮 */
+    --text-primary: 55 65 81; /* 柔和文字 */
+  }
+  
+  * {
+    @apply transition-colors duration-300;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: rgb(var(--bg-primary));
+    color: rgb(var(--text-primary));
+  }
+
+  code {
+    font-family: 'JetBrains Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  /* 統一滾動條樣式 - 梵高筆觸風格 */
+  ::-webkit-scrollbar {
+    @apply w-3;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-neural-100/50 rounded-lg;
+    border: 1px solid rgb(var(--border-color) / 0.3);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-lg;
+    background: linear-gradient(135deg, rgb(var(--van-gogh-sky-blue)) 0%, rgb(var(--van-gogh-purple)) 100%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, rgb(var(--van-gogh-purple)) 0%, rgb(var(--van-gogh-gold)) 100%);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgb(var(--shadow-glow) / 0.3);
+  }
+  
+  /* 確保所有容器都能正確顯示滾動條 */
+  .overflow-y-auto {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--van-gogh-sky-blue) / 0.7) rgb(var(--bg-secondary) / 0.5);
+  }
+}
+
+@layer components {
+  /* 神經形態卡片 */
+  .neural-card {
+    @apply bg-white/70 backdrop-blur-xl border border-neural-200/50 rounded-2xl shadow-neural;
+    background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%);
+  }
+  
+  /* AI按鈕 */
+  .ai-button {
+    @apply bg-gradient-to-r from-primary-500 to-ai-purple text-white rounded-xl font-medium;
+    @apply hover:from-primary-600 hover:to-ai-purple/90 transform hover:scale-105;
+    @apply transition-all duration-300 shadow-lg hover:shadow-xl;
+    @apply border border-white/20;
+  }
+  
+  /* 數據流動效果 */
+  .data-stream {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .data-stream::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: dataFlow 3s linear infinite;
+  }
+  
+  /* 玻璃形態效果 */
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 懸浮效果 */
+  .hover-lift {
+    @apply transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl;
+  }
+  
+  /* 脈衝動畫 */
+  .pulse-glow {
+    @apply animate-pulse;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  }
+}
+
+@layer utilities {
+  /* 自定義動畫 */
+  @keyframes dataFlow {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  
+  @keyframes neuralPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.4); }
+  }
+  
+  /* 漸變文字 */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-600 to-ai-purple bg-clip-text text-transparent;
+  }
+  
+  /* 神經網絡背景 */
+  .neural-bg {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
+  }
+}
+
+/* 神經形態設計基礎樣式 - 使用CSS變量 */
+.neural-card {
+  background-color: rgba(var(--bg-card), 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--border-color), 0.3);
+  box-shadow: 0 8px 32px rgba(var(--shadow-color), var(--shadow-opacity));
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neural-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(var(--shadow-color), calc(var(--shadow-opacity) + 0.1));
+}
+
+/* OLED優化：深色模式下的特殊處理 */
+.dark .neural-card {
+  background-color: rgba(var(--bg-card), 0.95);
+  border: 1px solid rgba(var(--border-color), 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.dark .neural-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* AI科技風格按鈕 - 適配暗色模式 */
+.ai-button {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgb(var(--ai-cyan)), rgb(var(--ai-purple)));
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.ai-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.ai-button:hover::before {
+  left: 100%;
+}
+
+.ai-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(var(--ai-glow), 0.4);
+}
+
+/* 深色模式下的按鈕優化 */
+.dark .ai-button {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dark .ai-button:hover {
+  box-shadow: 0 8px 25px rgba(var(--ai-glow), 0.5), 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* 數據流動畫 */
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-stream::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  animation: dataFlow 3s ease-in-out infinite;
+}
+
+/* 玻璃形態效果 */
+.glass-morphism {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+/* AI思考動畫 */
+.ai-thinking {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ai-thinking::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* 智能滾動條樣式 - 適配暗色模式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(var(--bg-secondary), 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(var(--ai-cyan), 0.6), rgba(var(--ai-purple), 0.6));
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(var(--border-color), 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(var(--ai-cyan), 0.8), rgba(var(--ai-purple), 0.8));
+}
+
+/* 深色模式滾動條優化 */
+.dark ::-webkit-scrollbar-track {
+  background: rgba(var(--bg-secondary), 0.8);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(var(--ai-cyan), 0.4), rgba(var(--ai-purple), 0.4));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(var(--ai-cyan), 0.6), rgba(var(--ai-purple), 0.6));
+}
+
+/* 微交互動畫關鍵幀 */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px currentColor; }
+  50% { box-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes neural-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) blur(0px);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.2) blur(0.5px);
+  }
+}
+
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+    filter: hue-rotate(180deg);
+  }
+  60% {
+    transform: translate(2px, 2px);
+    filter: hue-rotate(270deg);
+  }
+  80% {
+    transform: translate(2px, -2px);
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slide-in-from-top {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-bottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 動畫類別 */
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-ripple {
+  animation: ripple 0.6s ease-out;
+}
+
+.animate-neural-pulse {
+  animation: neural-pulse 2s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s ease-in-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-slide-in-top {
+  animation: slide-in-from-top 0.3s ease-out;
+}
+
+.animate-slide-in-bottom {
+  animation: slide-in-from-bottom 0.3s ease-out;
+}
+
+/* 懸停效果 */
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px currentColor;
+}
+
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* 焦點效果 */
+.focus-ring {
+  transition: all 0.2s ease;
+}
+
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* 載入狀態 */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.dark .loading-shimmer {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200% 100%;
+}
+
+/* 選擇文本樣式 */
+::selection {
+  background: rgba(14, 165, 233, 0.2);
+  color: inherit;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .neural-card {
+    border-radius: 16px;
+  }
+  
+  .ai-button {
+    border-radius: 10px;
+  }
+}
