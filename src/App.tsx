@@ -13,6 +13,8 @@ import TaskCenter from './pages/TaskCenter';
 import ProjectManagement from './pages/ProjectManagement';
 import Settings from './pages/Settings';
 import MouseEffectsDemo from './pages/MouseEffectsDemo';
+import EnhancedMouseEffectsDemo from './pages/EnhancedMouseEffectsDemo';
+import SimpleEnhancedMouseEffectsDemo from './pages/SimpleEnhancedMouseEffectsDemo';
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
             <Route path="projects" element={<ProjectManagement />} />
             <Route path="settings" element={<Settings />} />
             <Route path="mouse-effects" element={<MouseEffectsDemo />} />
+            <Route path="enhanced-mouse-effects" element={<SimpleEnhancedMouseEffectsDemo />} />
           </Route>
         </Routes>
       </BrowserRouter>
