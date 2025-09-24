@@ -333,8 +333,7 @@ const EnhancedMouseEffectsDemo: React.FC = () => {
           </div>
 
           {/* 颜色和控制面板 */}
-          <div className="xl:col-span-1 space-y-6"
-003e
+          <div className="xl:col-span-1 space-y-6">
             <Card variant="glass" className="p-6"
             >
               <h3 className="text-lg font-semibold text-white mb-4">颜色选择</h3>

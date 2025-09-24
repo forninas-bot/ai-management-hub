@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MouseEffect } from '../components/effects';
+import { UnifiedMouseEffect, MouseEffectType } from '../components/effects';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
-
-type MouseEffectType = 'trail' | 'particles' | 'ripple' | 'glow';
 
 const MouseEffectsDemo: React.FC = () => {
   const [selectedEffect, setSelectedEffect] = useState<MouseEffectType>('trail');
@@ -25,17 +23,24 @@ const MouseEffectsDemo: React.FC = () => {
   ];
 
   const effects = [
-    { id: 'trail', name: '轨迹效果', description: '鼠标移动时留下渐隐的轨迹' },
-    { id: 'particles', name: '粒子效果', description: '鼠标周围产生脉动的粒子' },
-    { id: 'ripple', name: '涟漪效果', description: '鼠标移动时产生涟漪扩散' },
-    { id: 'glow', name: '光晕效果', description: '鼠标周围有柔和的光晕' },
+    // 基础效果（原始4个）
+    { id: 'trail', name: '轨迹效果', description: '鼠标移动时留下渐隐的轨迹', category: '基础' },
+    { id: 'particles', name: '粒子效果', description: '鼠标周围产生脉动的粒子', category: '基础' },
+    { id: 'ripple', name: '涟漪效果', description: '鼠标移动时产生涟漪扩散', category: '基础' },
+    { id: 'glow', name: '光晕效果', description: '鼠标周围有柔和的光晕', category: '基础' },
+    
+    // 增强效果（新增4个）
+    { id: 'fire-trail', name: '🔥 火焰轨迹', description: '燃烧的火焰轨迹，热情奔放', category: '增强' },
+    { id: 'lightning', name: '⚡ 闪电效果', description: '炫目的闪电分支，速度激情', category: '增强' },
+    { id: 'butterfly', name: '🦋 蝴蝶效果', description: '优雅的蝴蝶围绕鼠标飞舞', category: '增强' },
+    { id: 'crystal', name: '💎 水晶效果', description: '旋转的水晶多边形，纯净闪耀', category: '增强' },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6 relative overflow-hidden">
       {/* 鼠标效果 */}
       {isEnabled && (
-        <MouseEffect
+        <UnifiedMouseEffect
           type={selectedEffect}
           color={effectColor}
           size={effectSize}
@@ -62,7 +67,7 @@ const MouseEffectsDemo: React.FC = () => {
             鼠标效果实验室
           </h1>
           <p className="text-xl text-gray-300 mb-6">
-            体验各种炫酷的鼠标跟随效果
+            体验8种炫酷鼠标效果：轨迹、粒子、涟漪、光晕、火焰、闪电、蝴蝶、水晶
           </p>
           <div className="flex justify-center space-x-4">
             <Button
@@ -78,22 +83,48 @@ const MouseEffectsDemo: React.FC = () => {
           {/* 控制面板 */}
           <div className="lg:col-span-1 space-y-6">
             <Card variant="glass" className="p-6">
-              <h3 className="text-lg font-semibold text-white mb-4">效果类型</h3>
-              <div className="space-y-3">
-                {effects.map((effect) => (
-                  <div
-                    key={effect.id}
-                    className={`p-3 rounded-lg cursor-pointer transition-all ${
-                      selectedEffect === effect.id
-                        ? 'bg-blue-500/20 border border-blue-500'
-                        : 'bg-white/5 hover:bg-white/10'
-                    }`}
-                    onClick={() => setSelectedEffect(effect.id as MouseEffectType)}
-                  >
-                    <div className="font-medium text-white">{effect.name}</div>
-                    <div className="text-sm text-gray-300">{effect.description}</div>
-                  </div>
-                ))}
+              <h3 className="text-lg font-semibold text-white mb-4">效果类型（共8种）</h3>
+              
+              {/* 基础效果 */}
+              <div className="mb-4">
+                <h4 className="text-sm font-medium text-gray-300 mb-2">🎯 基础效果</h4>
+                <div className="space-y-2">
+                  {effects.filter(e => e.category === '基础').map((effect) => (
+                    <div
+                      key={effect.id}
+                      className={`p-3 rounded-lg cursor-pointer transition-all ${
+                        selectedEffect === effect.id
+                          ? 'bg-blue-500/20 border border-blue-500'
+                          : 'bg-white/5 hover:bg-white/10'
+                      }`}
+                      onClick={() => setSelectedEffect(effect.id as MouseEffectType)}
+                    >
+                      <div className="font-medium text-white">{effect.name}</div>
+                      <div className="text-sm text-gray-300">{effect.description}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* 增强效果 */}
+              <div>
+                <h4 className="text-sm font-medium text-gray-300 mb-2">✨ 增强效果</h4>
+                <div className="space-y-2">
+                  {effects.filter(e => e.category === '增强').map((effect) => (
+                    <div
+                      key={effect.id}
+                      className={`p-3 rounded-lg cursor-pointer transition-all ${
+                        selectedEffect === effect.id
+                          ? 'bg-purple-500/20 border border-purple-500'
+                          : 'bg-white/5 hover:bg-white/10'
+                      }`}
+                      onClick={() => setSelectedEffect(effect.id as MouseEffectType)}
+                    >
+                      <div className="font-medium text-white">{effect.name}</div>
+                      <div className="text-sm text-gray-300">{effect.description}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </Card>
 
@@ -145,6 +176,65 @@ const MouseEffectsDemo: React.FC = () => {
                     onChange={(e) => setEffectOpacity(Number(e.target.value))}
                     className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
                   />
+                </div>
+                
+                {/* 快速预设 */}
+                <div className="mt-6">
+                  <h4 className="text-sm font-semibold text-white mb-3">快速预设</h4>
+                  <div className="grid grid-cols-2 gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => {
+                        setSelectedEffect('fire-trail');
+                        setEffectColor('#ff4500');
+                        setEffectSize(15);
+                        setEffectOpacity(0.9);
+                      }}
+                    >
+                      🔥 烈焰
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => {
+                        setSelectedEffect('lightning');
+                        setEffectColor('#9400d3');
+                        setEffectSize(12);
+                        setEffectOpacity(0.8);
+                      }}
+                    >
+                      ⚡ 闪电
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => {
+                        setSelectedEffect('butterfly');
+                        setEffectColor('#ff69b4');
+                        setEffectSize(10);
+                        setEffectOpacity(0.8);
+                      }}
+                    >
+                      🦋 蝴蝶
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => {
+                        setSelectedEffect('crystal');
+                        setEffectColor('#00ff7f');
+                        setEffectSize(14);
+                        setEffectOpacity(0.85);
+                      }}
+                    >
+                      💎 水晶
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Card>

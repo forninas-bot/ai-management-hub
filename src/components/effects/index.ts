@@ -3,8 +3,10 @@ export { default as DataFlow } from './DataFlow';
 export { default as StatusIndicator } from './StatusIndicator';
 export { default as MouseEffect } from './MouseEffect';
 export { default as SimpleEnhancedMouseEffect } from './SimpleEnhancedMouseEffect';
+export { default as UnifiedMouseEffect } from './UnifiedMouseEffect';
 
 // 類型導出
 export type { default as ParticleEffectProps } from './ParticleEffect';
 export type { default as DataFlowProps } from './DataFlow';
 export type { default as StatusIndicatorProps } from './StatusIndicator';
+export type { MouseEffectType } from './UnifiedMouseEffect';
