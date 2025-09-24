@@ -1,0 +1,67 @@
+/* AI 對話窗強制換行樣式 */
+
+.ai-message-content {
+  /* 強制換行 - 每行最少20字元 */
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 1rem;
+  
+  /* 確保內容能夠完全展開 */
+  min-width: 100%;
+  width: 100%;
+  
+  /* 強制每行最少20字元的視覺效果 */
+  display: block;
+  width: fit-content;
+  min-width: 20ch; /* 最少20字元寬度 */
+  max-width: 100%;
+}
+
+/* 強制段落顯示 */
+.ai-message-content p {
+  display: block !important;
+  width: 100% !important;
+  min-width: 20ch !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.6 !important;
+}
+
+/* 強制換行樣式 */
+.ai-message-content .forced-line {
+  display: block !important;
+  min-width: 20ch !important;
+  width: 100% !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.6 !important;
+  word-break: break-all !important;
+  white-space: pre-wrap !important;
+}
+
+/* 確保長文本正確換行 */
+.ai-message-content {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* 針對中文的優化 */
+.ai-message-content:lang(zh) {
+  word-break: break-all;
+  line-break: anywhere;
+}
+
+/* 暗色模式支援 */
+@media (prefers-color-scheme: dark) {
+  .ai-message-content {
+    color: #e5e7eb;
+  }
+}
+
+/* 確保內容不會被截斷 */
+.ai-message-content * {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: pre-wrap !important;
+}

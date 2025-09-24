@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import './ChatWindow.css'; // 我們將創建自定義CSS
 import ReactMarkdown from 'react-markdown';
 import { Conversation, ChatMessage } from '../../types';
 
@@ -6,6 +7,41 @@ interface ChatWindowProps {
   conversation: Conversation;
   isStreaming?: boolean;
 }
+
+// 強制換行邏輯組件 - 每行最少20字元
+const ForcedLineBreak: React.FC<{ text: string }> = ({ text }) => {
+  if (!text) return null;
+  
+  // 強制每行最少20字元的處理
+  const lines = [];
+  let currentLine = '';
+  
+  // 逐字處理，確保每行最少20字元
+  for (let i = 0; i < text.length; i++) {
+    currentLine += text[i];
+    
+    // 當達到20字元時，強制換行
+    if (currentLine.length >= 20) {
+      lines.push(currentLine);
+      currentLine = '';
+    }
+  }
+  
+  // 添加剩餘的內容
+  if (currentLine) {
+    lines.push(currentLine);
+  }
+  
+  return (
+    <div className="text-base leading-relaxed break-words ai-message-content">
+      {lines.map((line, index) => (
+        <span key={index} className="forced-line">
+          {line}
+        </span>
+      ))}
+    </div>
+  );
+};
 
 // 增強的流式內容顯示組件
 const StreamingContent: React.FC<{ content: string }> = ({ content }) => {
@@ -63,11 +99,14 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ conversation, isStreaming = fal
           <div className="text-sm mb-1 opacity-75">
             {formatTime(message.timestamp)}
           </div>
-          <div className="prose prose-base max-w-none dark:prose-invert text-base leading-relaxed">
+          <div className="prose prose-base max-w-none dark:prose-invert text-base leading-relaxed ai-message-content">
             {message.role === 'assistant' ? (
               <ReactMarkdown 
                 components={{
-                  p: ({ children }) => <p className="mb-4 leading-relaxed whitespace-pre-wrap break-words text-base">{children}</p>,
+                  p: ({ children }) => {
+                    const text = Array.isArray(children) ? children.join('') : String(children);
+                    return <ForcedLineBreak text={text} />;
+                  },
                   ul: ({ children }) => <ul className="mb-4 space-y-2 list-disc pl-6">{children}</ul>,
                   ol: ({ children }) => <ol className="mb-4 space-y-2 list-decimal pl-6">{children}</ol>,
                   li: ({ children }) => <li className="ml-4 mb-1">{children}</li>,
@@ -84,7 +123,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ conversation, isStreaming = fal
                 {message.content}
               </ReactMarkdown>
             ) : (
-              <div className="whitespace-pre-wrap leading-relaxed break-words text-base">{message.content}</div>
+              <ForcedLineBreak text={message.content} />
             )}
           </div>
         </div>
