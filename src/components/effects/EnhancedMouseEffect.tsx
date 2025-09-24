@@ -47,7 +47,6 @@ const EnhancedMouseEffect: React.FC<EnhancedMouseEffectProps> = ({
   const [prevMousePosition, setPrevMousePosition] = useState({ x: 0, y: 0 });
   const trailIdRef = useRef(0);
   const particleIdRef = useRef(0);
-  const animationRef = useRef<number>();
   const containerRef = useRef<HTMLDivElement>(null);
 
   // 计算鼠标移动速度和角度

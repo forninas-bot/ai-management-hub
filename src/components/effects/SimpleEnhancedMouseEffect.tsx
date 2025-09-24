@@ -231,8 +231,7 @@ const SimpleEnhancedMouseEffect: React.FC<SimpleEnhancedMouseEffectProps> = ({
         const currentOpacity = opacity * (1 - progress);
         
         return (
-          <div key={particle.id} className="absolute" style={{ left: particle.x, top: particle.y, opacity: currentOpacity }}
-003e
+          <div key={particle.id} className="absolute" style={{ left: particle.x, top: particle.y, opacity: currentOpacity }}>
             {/* 左翅膀 */}
             <motion.div
               className="absolute w-4 h-5 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full"
