@@ -12,9 +12,6 @@ const Layout: React.FC = () => {
   const navItems = [
     { path: '/', label: 'AI 聊天', icon: '🤖', gradient: 'from-blue-500 to-purple-600', vanGoghColor: 'van-gogh-night-blue' },
     { path: '/ai-center', label: 'AI 管理中心', icon: '🧠', gradient: 'from-purple-500 to-pink-500', vanGoghColor: 'van-gogh-purple' },
-    { path: '/ai-design', label: 'AI 設計展示', icon: '🎨', gradient: 'from-yellow-500 to-orange-500', vanGoghColor: 'van-gogh-gold' },
-    { path: '/ai-showcase', label: 'AI 功能展示', icon: '✨', gradient: 'from-cyan-500 to-blue-600', vanGoghColor: 'van-gogh-sky-blue' },
-    { path: '/mouse-effects', label: '滑鼠效果', icon: '🖱️', gradient: 'from-pink-500 to-rose-500', vanGoghColor: 'van-gogh-pink' },
     { path: '/pomodoro', label: '蕃茄鐘', icon: '⏱️', gradient: 'from-orange-500 to-pink-500', vanGoghColor: 'van-gogh-orange' },
     { path: '/notebook', label: '筆記本', icon: '📚', gradient: 'from-green-500 to-blue-500', vanGoghColor: 'van-gogh-green' },
     { path: '/tasks', label: '任務中心', icon: '🎯', gradient: 'from-purple-500 to-pink-500', vanGoghColor: 'van-gogh-violet' },
